@@ -16,9 +16,10 @@ const scores = [
 // 66
 // ==========================================
 
-
-
-
+//Gebruik van for loop:
+for (let i = 0; i < scores.length; i++) { //Loop gaat door elke index van de array 'scores'
+    console.log(scores[i].score); //Bij elke iteratie logt het de 'score' property van het huidige object naar de terminal
+}
 
 // ==========================================
 // Opdracht 1b
@@ -31,10 +32,26 @@ const scores = [
 // A
 // D
 // ==========================================
+for (let i = 0; i < scores.length; i++) {
+    const score = scores[i].score;
+    let grade;
 
+    if (score < 60) {
+        grade = 'F';
+    } else if (score < 70) {
+        grade = 'D';
+    } else if (score < 80) {
+        grade = 'C';
+    } else if (score < 90) {
+        grade = 'B';
+    } else {
+        grade = 'A';
+    }
+    scores[i].grade = grade; //Uitwerking opdracht 1c
 
-
-
+}
+console.log(grade)
+console.log(scores) //Uitwerking opdracht 1c
 
 // ==========================================
 // Opdracht 1c
@@ -49,15 +66,13 @@ const scores = [
 //  ];
 // ==========================================
 
-
-
-
+//Zie uitwerking hierboven (regel 50 en 54)
 
 // ==========================================
 // Opdracht 2
 // Schrijf een script die e-mailadressen genereert voor al onze medewerkers. Sla dit op in een nieuwe property "email" die je toevoegt aan iedere medewerker.
 
-const NOVIEmployees = [
+const NOVIEmployees = [ //Initialisatie van de array 'NOVIEmployees'
     {firstName: 'Nova', lastName: 'Eeken'},
     {firstName: 'Sam', lastName: 'Barnhoorn'},
     {firstName: 'Tessa', lastName: 'Steur'},
@@ -74,17 +89,19 @@ const NOVIEmployees = [
 //   { firstName: 'Mark', lastName: 'Rensen', email: 'Mark.Rensen@novi.nl' },
 //  ];
 // ==========================================
+console.log(NOVIEmployees); //Logging van oorspronkelijke array.
 
-
-
-
+NOVIEmployees.forEach(employee => { //Gebruik van forEach methode. Deze gaat door elk element van de array 'NOVIEmployees'
+    employee.email = (employee.firstName + ' . ' + employee.lastName + '@novi.nl').toLowerCase(); //Bij elke iteratie voegt het een nieuwe property 'email' toe aan het huidige object, met de waarde van de voornaam, een punt, de achternaam en de domeinnaam '@novi.nl'.
+});
+console.log(NOVIEmployees); //Logging van aangepaste array.
 
 
 // Opdracht 2-BONUS
 // Lukt het je om ervoor te zorgen dat alle e-mailadressen in lowercase letters komen te staan? Dit heb je nog niet geleerd, maar google is your best friend...
 // ==========================================
 
-
+//zie hierboven regel 95 (toevoeging ronde haken + .toLowerCase() ).
 
 
 // ==========================================
@@ -99,7 +116,7 @@ const NOVIEmployees = [
 //  3581 = Oudwijk
 //  3583 = Schildersbuurt
 
-const students = [
+const students = [ //Initalisatie van array 'students' met hun naam, stad, postcode en buurt (die momenteel 'null' is).
     {name: 'Mariska', city: 'Utrecht', zipCode: '3513', neighborhood: null},
     {name: 'Mehmet', city: 'Utrecht', zipCode: '3514', neighborhood: null},
     {name: 'Dennis', city: 'Utrecht', zipCode: '3572', neighborhood: null},
@@ -113,6 +130,20 @@ const students = [
     {name: 'Aicha', city: 'Utrecht', zipCode: '3514', neighborhood: null},
     {name: 'Karima', city: 'Utrecht', zipCode: '3531', neighborhood: null},
 ];
+const zipCodeToNeighborhood = { //Definitie van mapping 'zipCodeToNeighborhood', waarbij het object elke postcode aan de bijbehorende buurt koppelt.
+    '3513': 'Pijlsweerd',
+    '3514': 'Vogelenbuurt',
+    '3512': 'Binnenstad',
+    '3531': 'Lombok',
+    '3572': 'Wittevrouwen',
+    '3581': 'Oudwijk',
+    '3583': 'Schildersbuurt'
+};
+
+students.forEach(student => { //Bij elke iteratie van deze 'forEach' methode wordt de 'neighborhood'-property van de huidige student bijgewerkt met de waarde uit het 'zipCodeToNeighborhood'-object, obv 'zipCode' property.
+    student.neighborhood = zipCodeToNeighborhood[student.zipCode];
+});
+console.log(students); //Logging van de aangepaste array.
 
 // Verwachte uitkomsten:
 // [
@@ -130,6 +161,7 @@ const students = [
 //     { name: 'Karima', city: 'Utrecht', zipCode: '3531', neighborhood: 'Lombok' }
 // ]
 // ==========================================
+
 
 
 
